@@ -13,6 +13,7 @@
         android:paddingBottom="100dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notes_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_note" />
