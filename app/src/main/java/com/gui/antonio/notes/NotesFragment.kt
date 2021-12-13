@@ -17,7 +17,6 @@ class NotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         notesBinding = FragmentNotesBinding.inflate(inflater, container, false)
-
         notesBinding?.notesRecyclerView?.apply {
             setHasFixedSize(true)
             adapter = NotesAdapter().apply {
@@ -25,6 +24,10 @@ class NotesFragment : Fragment() {
                     findNavController().navigate(R.id.action_notesFragment_to_noteDetailsFragment)
                 }
             }
+        }
+        notesBinding?.notesAddFloatingActionButton?.setOnClickListener {
+            val modal = ModalBottomSheet()
+            modal.show(parentFragmentManager, ModalBottomSheet.TAG)
         }
 
         return notesBinding?.root
