@@ -1,10 +1,10 @@
 package com.gui.antonio.notes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gui.antonio.notes.databinding.FragmentNotesBinding
 
@@ -23,10 +23,30 @@ class NotesFragment : Fragment() {
                 onClickNote = {
                     findNavController().navigate(R.id.action_notesFragment_to_noteDetailsFragment)
                 }
+                onDeleteNote = {
+                    val action = NoteModalBottomSheetAction.Removing(
+                        note = NoteModalBottomSheetModel(
+                            title = "Title",
+                            description = "Description"
+                        )
+                    )
+                    val modal = ModalBottomSheet(action = action)
+                    modal.show(parentFragmentManager, ModalBottomSheet.TAG)
+                }
+                onEditNote = {
+                    val action = NoteModalBottomSheetAction.Editing(
+                        note = NoteModalBottomSheetModel(
+                            title = "Title",
+                            description = "Description"
+                        )
+                    )
+                    val modal = ModalBottomSheet(action = action)
+                    modal.show(parentFragmentManager, ModalBottomSheet.TAG)
+                }
             }
         }
         notesBinding?.notesAddFloatingActionButton?.setOnClickListener {
-            val modal = ModalBottomSheet()
+            val modal = ModalBottomSheet(action = NoteModalBottomSheetAction.Adding)
             modal.show(parentFragmentManager, ModalBottomSheet.TAG)
         }
 

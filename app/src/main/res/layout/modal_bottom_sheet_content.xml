@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/standard_bottom_sheet"
+        android:id="@+id/container_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:behavior_peekHeight="600dp"
@@ -27,6 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modal_title_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title"
@@ -47,6 +48,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modal_description_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Description"
@@ -57,7 +59,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/modal_bottom_create_button"
+                android:id="@+id/modal_bottom_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
