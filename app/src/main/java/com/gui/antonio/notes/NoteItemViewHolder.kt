@@ -10,9 +10,9 @@ import com.gui.antonio.notes.databinding.ItemNoteBinding
 
 class NoteItemViewHolder(
     private val itemNoteBinding: ItemNoteBinding,
-    private val onClickNote: () -> Unit,
-    private val onDeleteNote: () -> Unit,
-    private val onEditNote: () -> Unit
+    private val onClickNote: (note: NotePresentation) -> Unit,
+    private val onDeleteNote: (note: NotePresentation) -> Unit,
+    private val onEditNote: (note: NotePresentation) -> Unit
 ) : RecyclerView.ViewHolder(itemNoteBinding.root) {
 
     companion object {
@@ -24,11 +24,14 @@ class NoteItemViewHolder(
             )
     }
 
-    fun bind() {
+    fun bind(note: NotePresentation) {
         itemNoteBinding.apply {
-            root.setOnClickListener { onClickNote.invoke() }
-            noteDeleteButton.setOnClickListener { onDeleteNote.invoke() }
-            noteEditButton.setOnClickListener { onEditNote.invoke() }
+            noteTitle.text = note.title
+            noteDescription.text = note.description
+
+            root.setOnClickListener { onClickNote.invoke(note) }
+            noteDeleteButton.setOnClickListener { onDeleteNote.invoke(note) }
+            noteEditButton.setOnClickListener { onEditNote.invoke(note) }
         }
     }
 

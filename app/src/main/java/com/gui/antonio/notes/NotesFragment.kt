@@ -20,14 +20,15 @@ class NotesFragment : Fragment() {
         notesBinding?.notesRecyclerView?.apply {
             setHasFixedSize(true)
             adapter = NotesAdapter().apply {
+                submitList(getNotes())
                 onClickNote = {
                     findNavController().navigate(R.id.action_notesFragment_to_noteDetailsFragment)
                 }
                 onDeleteNote = {
                     val action = NoteModalBottomSheetAction.Removing(
                         note = NoteModalBottomSheetModel(
-                            title = "Title",
-                            description = "Description"
+                            title = it.title,
+                            description = it.description
                         )
                     )
                     val modal = ModalBottomSheet(action = action)
@@ -36,8 +37,8 @@ class NotesFragment : Fragment() {
                 onEditNote = {
                     val action = NoteModalBottomSheetAction.Editing(
                         note = NoteModalBottomSheetModel(
-                            title = "Title",
-                            description = "Description"
+                            title = it.title,
+                            description = it.description
                         )
                     )
                     val modal = ModalBottomSheet(action = action)
