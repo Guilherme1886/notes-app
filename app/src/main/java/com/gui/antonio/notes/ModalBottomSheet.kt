@@ -8,7 +8,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.gui.antonio.notes.databinding.ModalBottomSheetContentBinding
 
 class ModalBottomSheet(
-    private val action: NoteModalBottomSheetAction
+    private val action: NoteModalBottomSheetAction,
+    private val sendNote: (NotePresentation) -> Unit
+
 ) : BottomSheetDialogFragment() {
 
     override fun onCreateView(
@@ -29,6 +31,15 @@ class ModalBottomSheet(
                 binding.modalDescriptionEditText.setText(action.note.description)
                 binding.modalBottomButton.text = "REMOVE NOTE"
             }
+        }
+        binding.modalBottomButton.setOnClickListener {
+            sendNote.invoke(
+                NotePresentation(
+                    title = binding.modalTitleEditText.text.toString(),
+                    description = binding.modalDescriptionEditText.text.toString()
+                )
+            )
+            dismiss()
         }
         return binding.root
     }

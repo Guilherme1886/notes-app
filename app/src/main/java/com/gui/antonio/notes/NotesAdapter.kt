@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class NotesAdapter : ListAdapter<NotePresentation, RecyclerView.ViewHolder>(NoteDiffCallback()) {
 
     var onClickNote: (note: NotePresentation) -> Unit = {}
-    var onDeleteNote: (note: NotePresentation) -> Unit = {}
-    var onEditNote: (note: NotePresentation) -> Unit = {}
+    var onDeleteNote: ((NotePresentation, Int) -> Unit)? = null
+    var onEditNote: ((NotePresentation, Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
         return NoteItemViewHolder(
@@ -23,7 +23,7 @@ class NotesAdapter : ListAdapter<NotePresentation, RecyclerView.ViewHolder>(Note
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as NoteItemViewHolder).bind(getItem(position))
+        (holder as NoteItemViewHolder).bind(getItem(position), position)
     }
 }
 
