@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.gui.antonio.notes.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_notesFragment"
             app:destination="@id/notesFragment"
@@ -22,7 +22,7 @@
         android:id="@+id/notesFragment"
         android:name="com.gui.antonio.notes.NotesFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_notes" >
+        tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notesFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment"

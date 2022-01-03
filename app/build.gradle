@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -36,8 +37,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def nav_version = "2.3.5"
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //Library
     implementation 'androidx.core:core-ktx:1.7.0'
