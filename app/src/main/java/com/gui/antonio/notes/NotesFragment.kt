@@ -26,7 +26,9 @@ class NotesFragment : Fragment() {
                     submitList(getNotes())
                     onClickNote = {
                         findNavController().navigate(
-                            NotesFragmentDirections.actionNotesFragmentToNoteDetailsFragment()
+                            NotesFragmentDirections.actionNotesFragmentToNoteDetailsFragment(
+                                title = ""
+                            )
                         )
                     }
                     onDeleteNote = { note, position ->

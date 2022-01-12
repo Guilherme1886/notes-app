@@ -27,19 +27,27 @@ class ModalBottomSheet(
                 binding.modalBottomButton.text = "EDIT NOTE"
             }
             is NoteModalBottomSheetAction.Removing -> {
-                binding.modalTitleEditText.setText(action.note.title)
-                binding.modalDescriptionEditText.setText(action.note.description)
+                binding.modalTitleEditText.apply {
+                    setText(action.note.title)
+                    isEnabled = false
+                }
+                binding.modalDescriptionEditText.apply {
+                    setText(action.note.description)
+                    isEnabled = false
+                }
                 binding.modalBottomButton.text = "REMOVE NOTE"
             }
         }
         binding.modalBottomButton.setOnClickListener {
-            sendNote.invoke(
-                NotePresentation(
-                    title = binding.modalTitleEditText.text.toString(),
-                    description = binding.modalDescriptionEditText.text.toString()
+            if (binding.modalTitleEditText.length() > 0 && binding.modalDescriptionEditText.length() > 0) {
+                sendNote.invoke(
+                    NotePresentation(
+                        title = binding.modalTitleEditText.text.toString(),
+                        description = binding.modalDescriptionEditText.text.toString()
+                    )
                 )
-            )
-            dismiss()
+                dismiss()
+            }
         }
         return binding.root
     }
