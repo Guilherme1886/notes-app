@@ -27,7 +27,7 @@ class NotesFragment : Fragment() {
                     onClickNote = {
                         findNavController().navigate(
                             NotesFragmentDirections.actionNotesFragmentToNoteDetailsFragment(
-                                title = ""
+                                note = it
                             )
                         )
                     }

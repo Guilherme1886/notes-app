@@ -10,19 +10,25 @@ import com.gui.antonio.notes.databinding.FragmentNoteDetailsBinding
 
 class NoteDetailsFragment : Fragment() {
 
-    private var noteDetailsFragment: FragmentNoteDetailsBinding? = null
-    val args : NoteDetailsFragmentArgs by navArgs()
+    private var fragmentNoteDetailsBinding: FragmentNoteDetailsBinding? = null
+    private val noteArguments: NoteDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        noteDetailsFragment = FragmentNoteDetailsBinding.inflate(inflater, container, false)
-        return noteDetailsFragment?.root
+        if (fragmentNoteDetailsBinding == null) {
+            fragmentNoteDetailsBinding = FragmentNoteDetailsBinding.inflate(inflater, container, false)
+            fragmentNoteDetailsBinding?.apply {
+                fragmentNoteDetailsTitleTextView.text = noteArguments.note.title
+                fragmentNoteDetailsDescriptionTextView.text = noteArguments.note.description
+            }
+        }
+        return fragmentNoteDetailsBinding?.root
     }
 
     override fun onDestroyView() {
-        noteDetailsFragment = null
+        fragmentNoteDetailsBinding = null
         super.onDestroyView()
     }
 

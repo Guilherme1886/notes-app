@@ -37,8 +37,7 @@
         android:label="fragment_note_details"
         tools:layout="@layout/fragment_note_details" >
         <argument
-            android:name="title"
-            app:argType="string"
-            android:defaultValue="Title not found" />
+            android:name="note"
+            app:argType="com.gui.antonio.notes.NotePresentation" />
     </fragment>
 </navigation>
