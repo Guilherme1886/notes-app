@@ -38,12 +38,13 @@ class NotesFragment : Fragment() {
                                 description = note.description
                             )
                         )
-                        val modal = ModalBottomSheet(action = action) {
-                            val b = getNotes()
-                            b.removeAt(position)
-                            notesAdapter?.submitList(b)
-                        }
-                        modal.show(parentFragmentManager, ModalBottomSheet.TAG)
+                        (requireActivity() as MainActivity).showModal(action)
+//                        val modal = ModalBottomSheet(action = action) {
+//                            val b = getNotes()
+//                            b.removeAt(position)
+//                            notesAdapter?.submitList(b)
+//                        }
+//                        modal.show(parentFragmentManager, ModalBottomSheet.TAG)
                     }
                     onEditNote = { note, position ->
                         val action = NoteModalBottomSheetAction.Editing(
@@ -52,13 +53,14 @@ class NotesFragment : Fragment() {
                                 description = note.description
                             )
                         )
-                        val modal = ModalBottomSheet(action = action) {
-                            val b = getNotes()
-                            b.removeAt(position)
-                            b.add(position, it)
-                            notesAdapter?.submitList(b)
-                        }
-                        modal.show(parentFragmentManager, ModalBottomSheet.TAG)
+                        (requireActivity() as MainActivity).showModal(action)
+//                        val modal = ModalBottomSheet(action = action) {
+//                            val b = getNotes()
+//                            b.removeAt(position)
+//                            b.add(position, it)
+//                            notesAdapter?.submitList(b)
+//                        }
+//                        modal.show(parentFragmentManager, ModalBottomSheet.TAG)
                     }
                 }
                 adapter = notesAdapter

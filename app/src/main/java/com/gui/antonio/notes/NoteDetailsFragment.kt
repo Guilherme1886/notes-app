@@ -22,6 +22,24 @@ class NoteDetailsFragment : Fragment() {
             fragmentNoteDetailsBinding?.apply {
                 fragmentNoteDetailsTitleTextView.text = noteArguments.note.title
                 fragmentNoteDetailsDescriptionTextView.text = noteArguments.note.description
+                fragmentNoteDetailsDeleteButton.setOnClickListener {
+                    val action = NoteModalBottomSheetAction.Removing(
+                        note = NoteModalBottomSheetModel(
+                            title = noteArguments.note.title,
+                            description = noteArguments.note.description
+                        )
+                    )
+                    (requireActivity() as MainActivity).showModal(action)
+                }
+                fragmentNoteDetailsEditButton.setOnClickListener {
+                    val action = NoteModalBottomSheetAction.Editing(
+                        note = NoteModalBottomSheetModel(
+                            title = noteArguments.note.title,
+                            description = noteArguments.note.description
+                        )
+                    )
+                    (requireActivity() as MainActivity).showModal(action)
+                }
             }
         }
         return fragmentNoteDetailsBinding?.root
